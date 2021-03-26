@@ -1,6 +1,6 @@
 # Welcome to my 6502 Project!
 
-This repo contains the various assembly files written to run on a 6502 microprocessor. They can be compiled using the vasm compiler which I have included in the repo.
+This repo contains various assembly files written to run on a 6502 microprocessor. They can be compiled using the vasm compiler which I have included in the repo.
 
 ## counter.s 
 This is a simple program that counts and displays the number of times the processor handles and interrupt request.
