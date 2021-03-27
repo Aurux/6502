@@ -41,7 +41,7 @@ reset:
   jsr lcd_instruction
   lda #%00001110 ; Display on; cursor on; blink off
   jsr lcd_instruction
-  lda #%00000110 ; Increment and shift cursor; don't shift display
+  lda #%00000100 ; Increment and shift cursor; don't shift display
   jsr lcd_instruction
   lda #%00000001 ; Clear display
   jsr lcd_instruction
@@ -49,36 +49,80 @@ reset:
   lda #%00000010 ; Cursor to home
   jsr lcd_instruction
 
+  lda #%01100000 ; Loads "a" into RAM
+  sta letter
+
 loop:
+  
   jsr right_button
   jsr left_button
+  jsr up_button
+  jsr down_button
   jmp loop
 
-right_button:
+
+right_button: ; Checks if right button was pressed.
   lda PORTA
   and #BUTTON_MASK
   cmp #RIGHT
   beq cursor_right
   rts
 
-left_button:
+left_button: ; Checks if left button was pressed.
   lda PORTA
   and #BUTTON_MASK
   cmp #LEFT
   beq cursor_left
   rts
 
-cursor_left:
+up_button:
+  lda PORTA
+  and #BUTTON_MASK
+  cmp #UP
+  beq up_char
+  rts
+
+down_button:
+  lda PORTA
+  and #BUTTON_MASK
+  cmp #DOWN
+  beq down_char
+  rts
+
+cursor_left: ; Moves cursor left
   lda #%00010000
   jsr lcd_instruction
   jsr delay
   rts
 
-cursor_right:
+cursor_right: ; Moves cursor right
   lda #%00010100
   jsr lcd_instruction
   jsr delay
   rts
+
+up_char:
+  lda letter
+  tax
+  inx
+  txa
+  sta letter
+  jsr print_char
+  jsr cursor_left
+  jsr delay
+  rts
+
+down_char:
+  lda letter
+  tax
+  dex
+  txa
+  sta letter
+  jsr print_char
+  jsr cursor_left
+  jsr delay
+  rts
+
 lcd_wait:
   pha
   lda #%00000000  ; Port B is input
