@@ -130,3 +130,5 @@ dmypy.json
 
 # Vasm Output
 *.out
+vasm
+vobjdump
