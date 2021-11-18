@@ -25,7 +25,7 @@ RS = %00100000
 reset:
   ldx #$ff
   txs
-  cli
+  cli 
 
   lda #$82
   sta IER
