@@ -11,9 +11,9 @@ mod10 = $0202 ; 2 bytes
 message = $0204 ; 6 bytes
 counter = $020a ; 2 bytes
 
-E  = %10000001
-RW = %01000000
-RS = %00100000
+E  = %10000001 ; LCD Enable
+RW = %01000000 ; LCD R/W
+RS = %00100000 ; Register Select
 
   .org $8000
 
