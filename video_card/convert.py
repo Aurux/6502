@@ -11,4 +11,3 @@ for y in range(256):
       out_file.write(bytes(chr(pixels[x, y]),'utf-8'))
     except IndexError:
       out_file.write(bytes(chr(0),'utf-8'))
-
