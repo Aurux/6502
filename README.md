@@ -2,6 +2,8 @@
 
 This repo contains various assembly files written to run on a 6502 microprocessor. They can be compiled using the vasm compiler which I have included in the repo.
 
+I am learning all this from [Ben Eater's YouTube series](https://www.youtube.com/c/BenEater), please check him out!
+
 ## counter.s 
 This is a simple program that counts and displays the number of times the processor handles an interrupt request.
 
